@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Water+Brush&display=swap");
+$greyColor: rgb(84, 84, 84);
+$whiteColor: rgb(242, 235, 211);
+@mixin breakPoint($screenWidth) {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(20, 189, 172);
+  font-family: "Water Brush", cursive;
+}
+h1 {
+  color: red;
+}
+.veritical_line_right {
+  border-right: 5px solid rgb(13, 161, 146);
+}
+.horizontal_line {
+  border-bottom: 5px solid rgb(13, 161, 146);
+}
+
+.game--title {
+  margin: 30px;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: $greyColor;
+  text-align: center;
+  letter-spacing: 0.4rem;
+  @include breakPoint(480px) {
+    margin-top: 37px;
+  }
+}
+.game--container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: 306px;
+  margin: 40px auto;
+  color: white;
+  @include breakPoint(480px) {
+    margin-top: 128px;
+  }
+}
+.cell {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  line-height: 100px;
+  font-size: 60px;
+}
+.game--restart {
+  display: none;
+  margin: auto;
+  width: 33%;
+  font-family: "Permanent Marker", cursive;
+  color: $greyColor;
+  font-size: 20px;
+  padding: 5px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.322);
+  background-color: transparent;
+}
