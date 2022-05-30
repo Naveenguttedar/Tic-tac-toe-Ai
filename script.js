@@ -1,4 +1,4 @@
-import { checkWinner } from "./algo.js";
+import { checkWinner, gameISOver } from "./algo.js";
 import { getAiMove } from "./minmax.js";
 let board = [
   ["_", "_", "_"],
@@ -8,7 +8,8 @@ let board = [
 const xoElements = document.getElementsByClassName("cell");
 const gameRestartBtn = document.getElementById("gameRestart");
 const gamePlayerStates = document.getElementsByClassName("game--status");
-let gameISOver = false;
+let matchIsDraw = false;
+// let gameISOver = false;
 let value = "O"; // initial value for starting game
 //toggle X/O function
 function toggleXO(innerValue) {
@@ -17,6 +18,10 @@ function toggleXO(innerValue) {
 }
 //setting the values and adding the styles
 function setValue(cell, cellValue) {
+  if (cell == null) {
+    matchIsDraw = true;
+    return;
+  }
   board[Math.trunc(cell.id / board.length)][cell.id % board.length] = cellValue;
   if (cellValue == "X") cell.style.color = "rgb(84, 84, 84)";
   else cell.style.color = "rgb(242, 235, 211)";
@@ -40,9 +45,7 @@ function gameSetup(e) {
     setValue(aiCell, value);
     let winner = checkWinner(board);
     console.log(winner);
-    gameISOver = winner == -10 || winner == 10 ? true : false;
-    winner = winner == -10 ? "O" : "X";
-    if (gameISOver) {
+    if (gameISOver || winner == Math.abs(10) || matchIsDraw) {
       gamePlayerStates.textContent = "player " + winner;
       gameRestartBtn.style.display = "block";
     }
