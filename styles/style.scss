@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Water+Brush&display=swap");
 $greyColor: rgb(84, 84, 84);
 $whiteColor: rgb(242, 235, 211);
+$greenColor: rgb(20, 189, 172);
 @mixin breakPoint($screenWidth) {
   @media (max-width: 480px) {
     @content;
@@ -12,8 +13,7 @@ $whiteColor: rgb(242, 235, 211);
   box-sizing: border-box;
 }
 body {
-  background-color: rgb(20, 189, 172);
-  font-family: "Water Brush", cursive;
+  background-color: $greenColor;
 }
 h1 {
   color: red;
@@ -26,7 +26,8 @@ h1 {
 }
 
 .game--title {
-  margin: 30px;
+  margin-top: 30px;
+  font-family: "Water Brush", cursive;
   font-size: 2.4rem;
   font-weight: 600;
   color: $greyColor;
@@ -36,11 +37,22 @@ h1 {
     margin-top: 37px;
   }
 }
+.game--player {
+  font-family: "Permanent Marker", cursive;
+  text-align: center;
+  letter-spacing: 1px;
+  color: white;
+  label {
+    display: block;
+  }
+}
 .game--container {
   display: grid;
   grid-template-columns: repeat(3, auto);
+  font-family: "Water Brush", cursive;
   width: 306px;
-  margin: 40px auto;
+  margin: 0px auto;
+  margin-top: 40px;
   color: white;
   @include breakPoint(480px) {
     margin-top: 128px;
@@ -57,7 +69,7 @@ h1 {
 }
 .game--restart {
   display: none;
-  margin: auto;
+  margin: 0px auto;
   width: 33%;
   font-family: "Permanent Marker", cursive;
   color: $greyColor;
@@ -69,4 +81,44 @@ h1 {
   border: none;
   border-bottom: 2px solid rgba(0, 0, 0, 0.322);
   background-color: transparent;
+}
+.overley {
+  // border: 2px solid white;
+  display: none;
+  height: 100px;
+  position: relative;
+  top: -204px;
+  text-align: center;
+  align-items: center;
+  font-family: "Permanent Marker", cursive;
+  filter: blur(0px);
+  #winnerElement,
+  #message {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 60px;
+    margin-left: 10px;
+  }
+  #winnerElement {
+    font-family: "Water Brush", cursive;
+    font-size: 60px;
+    font-weight: 600;
+  }
+  #message {
+    font-family: "Permanent Marker", cursive;
+    color: gold;
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+}
+.show__results {
+  .game--container {
+    filter: blur(5px);
+  }
+  .overley {
+    display: block;
+  }
+  .game--restart {
+    display: block;
+  }
 }

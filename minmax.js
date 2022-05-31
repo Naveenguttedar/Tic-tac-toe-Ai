@@ -1,4 +1,4 @@
-import { checkWinner, Value } from "./algo.js";
+import { checkWinner, Value, isMovesLeft } from "./game.js";
 class Move {
   constructor() {
     let row, col;
@@ -7,13 +7,6 @@ class Move {
 
 let player = "O",
   opponent = "X";
-
-function isMovesLeft(board) {
-  for (let i = 0; i < 3; i++)
-    for (let j = 0; j < 3; j++) if (board[i][j] == "_") return true;
-  return false;
-}
-
 function evaluate(b) {
   // Checking for Rows for X or O victory.
   for (let row = 0; row < 3; row++) {
@@ -55,7 +48,7 @@ function minimax(board, depth, isMax) {
   if (score == Value.get("opponentScore")) return score;
   if (isMovesLeft(board) == false) return 0;
   if (isMax) {
-    let best = -100;
+    let best = -1000;
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         if (board[i][j] == "_") {
@@ -67,7 +60,7 @@ function minimax(board, depth, isMax) {
     }
     return best;
   } else {
-    let best = 100;
+    let best = 1000;
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         if (board[i][j] == "_") {
@@ -81,7 +74,7 @@ function minimax(board, depth, isMax) {
   }
 }
 function findBestMove(board) {
-  let bestVal = -100;
+  let bestVal = -1000;
   let bestMove = new Move();
   bestMove.row = -1;
   bestMove.col = -1;
@@ -99,11 +92,9 @@ function findBestMove(board) {
       }
     }
   }
-
   return bestMove;
 }
 
-// // Driver code
 let getAiMove = (board) => {
   let aiBoardIndex = findBestMove(board);
   let id = aiBoardIndex.row * 3 + aiBoardIndex.col;

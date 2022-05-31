@@ -4,14 +4,13 @@ let board = [
   ["_", "_", "_"],
 ];
 let Value = new Map([
-  ["playerScore", 100],
-  ["opponentScore", -100],
+  ["playerScore", 10],
+  ["opponentScore", -10],
   ["maxValue", 1000],
   [("minValue", -1000)],
 ]);
 let gameISOver = false;
 function isMovesLeft(board) {
-  console.log(gameISOver);
   for (let i = 0; i < 3; i++)
     for (let j = 0; j < 3; j++) if (board[i][j] == "_") return true;
   return false;
@@ -55,14 +54,9 @@ let addResulteSyles = (
     }
   }
 };
-
 //checking winner
 function checkWinner(board) {
   let score = 0;
-  if (isMovesLeft(board) == false) {
-    gameISOver = true;
-    return;
-  }
   // check horizontal
   for (let i = 0; i < board.length; i++) {
     if (isEqual3(board[i][0], board[i][1], board[i][2])) {
@@ -74,36 +68,53 @@ function checkWinner(board) {
       gameISOver = true;
       return score;
     }
-    for (let i = 0; i < board.length; i++) {
-      if (isEqual3(board[0][i], board[1][i], board[2][i])) {
-        addResulteSyles(0, i, false, false, false);
-        score =
-          board[0][i] == "X"
-            ? Value.get("playerScore")
-            : Value.get("opponentScore");
-        gameISOver = true;
-        return score;
-      }
-    }
-    if (isEqual3(board[0][0], board[1][1], board[2][2])) {
-      addResulteSyles(0, 0, false, true, false);
+  }
+  //check veritically
+  for (let i = 0; i < board.length; i++) {
+    if (isEqual3(board[0][i], board[1][i], board[2][i])) {
+      addResulteSyles(0, i, false, false, false);
       score =
-        board[0][0] == "X"
-          ? Value.get("playerScore")
-          : Value.get("opponentScore");
-      gameISOver = true;
-      return score;
-    }
-    if (isEqual3(board[0][2], board[1][1], board[2][0])) {
-      addResulteSyles(0, 0, false, false, true);
-      score =
-        board[0][2] == "X"
+        board[0][i] == "X"
           ? Value.get("playerScore")
           : Value.get("opponentScore");
       gameISOver = true;
       return score;
     }
   }
+  //check diagonal left
+  if (isEqual3(board[0][0], board[1][1], board[2][2])) {
+    console.log("yes");
+    addResulteSyles(0, 0, false, true, false);
+    score =
+      board[0][0] == "X"
+        ? Value.get("playerScore")
+        : Value.get("opponentScore");
+    gameISOver = true;
+    return score;
+  }
+  //check diagonal reight
+  if (isEqual3(board[0][2], board[1][1], board[2][0])) {
+    addResulteSyles(0, 0, false, false, true);
+    score =
+      board[0][2] == "X"
+        ? Value.get("playerScore")
+        : Value.get("opponentScore");
+    gameISOver = true;
+    return score;
+  }
+  // for (let i = 0; i < board.length; i++) {
+  //   for (let j = 0; j < board.length; j++) {
+  //     if (board[i][j] == "_") return;
+  //     gameISOver = true;
+  //   }
+  // }
+  // for (let i = 0; i < 3; i++)
+  //   for (let j = 0; j < 3; j++) {
+  //     if (board[i][j] == "_") return;
+  //     gameISOver = true;
+  //   }
+  gameISOver = !isMovesLeft(board);
+  return score;
 }
 
-export { gameISOver, checkWinner, Value };
+export { board, gameISOver, checkWinner, Value, isMovesLeft };

@@ -10,19 +10,29 @@
   <body>
     <section>
       <h1 class="game--title">Tic Tac Toe</h1>
-      <h5 class="game--status"></h5>
+      <div class="game--player">
+        <label for="player">Play with</label>  
+        <input type="radio" name="player" id="player" value="player" checked="checked"  onclick="location.reload()">player
+      <input type="radio" name="player" id="Ai" value="Ai" onclick="location.reload()">Ai</div>
+      <div class="game">
       <div class="game--container">
-        <div id="0" class="cell veritical_line_right horizontal_line"></div>
-        <div id="1" class="cell veritical_line_right horizontal_line"></div>
-        <div id="2" class="cell horizontal_line"></div>
-        <div id="3" class="cell veritical_line_right horizontal_line"></div>
-        <div id="4" class="cell veritical_line_right horizontal_line"></div>
-        <div id="5" class="cell horizontal_line"></div>
-        <div id="6" class="cell veritical_line_right"></div>
-        <div id="7" class="cell veritical_line_right"></div>
-        <div id="8" class="cell"></div>
+          <div id="0" class="cell veritical_line_right horizontal_line"></div>
+          <div id="1" class="cell veritical_line_right horizontal_line"></div>
+          <div id="2" class="cell horizontal_line"></div>
+          <div id="3" class="cell veritical_line_right horizontal_line"></div>
+          <div id="4" class="cell veritical_line_right horizontal_line"></div>
+          <div id="5" class="cell horizontal_line"></div>
+          <div id="6" class="cell veritical_line_right"></div>
+          <div id="7" class="cell veritical_line_right"></div>
+          <div id="8" class="cell"></div>
+        </div>
+        <div class="overley">
+          <div id="winnerElement">O</div>
+          <div id="message">Won!</div>
+        </div>
+        <button class="game--restart" id="gameRestart">Restart Game</button>
+        </div>  
       </div>
-      <button class="game--restart" id="gameRestart">Restart Game</button>
     </section>
   </body>
   <script src="script.js" type="module"></script>

@@ -7,7 +7,6 @@
 
 body {
   background-color: rgb(20, 189, 172);
-  font-family: "Water Brush", cursive;
 }
 
 h1 {
@@ -23,7 +22,8 @@ h1 {
 }
 
 .game--title {
-  margin: 30px;
+  margin-top: 30px;
+  font-family: "Water Brush", cursive;
   font-size: 2.4rem;
   font-weight: 600;
   color: rgb(84, 84, 84);
@@ -36,11 +36,23 @@ h1 {
   }
 }
 
+.game--player {
+  font-family: "Permanent Marker", cursive;
+  text-align: center;
+  letter-spacing: 1px;
+  color: white;
+}
+.game--player label {
+  display: block;
+}
+
 .game--container {
   display: grid;
   grid-template-columns: repeat(3, auto);
+  font-family: "Water Brush", cursive;
   width: 306px;
-  margin: 40px auto;
+  margin: 0px auto;
+  margin-top: 40px;
   color: white;
 }
 @media (max-width: 480px) {
@@ -61,7 +73,7 @@ h1 {
 
 .game--restart {
   display: none;
-  margin: auto;
+  margin: 0px auto;
   width: 33%;
   font-family: "Permanent Marker", cursive;
   color: rgb(84, 84, 84);
@@ -73,4 +85,43 @@ h1 {
   border: none;
   border-bottom: 2px solid rgba(0, 0, 0, 0.322);
   background-color: transparent;
+}
+
+.overley {
+  display: none;
+  height: 100px;
+  position: relative;
+  top: -204px;
+  text-align: center;
+  align-items: center;
+  font-family: "Permanent Marker", cursive;
+  filter: blur(0px);
+}
+.overley #winnerElement,
+.overley #message {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 60px;
+  margin-left: 10px;
+}
+.overley #winnerElement {
+  font-family: "Water Brush", cursive;
+  font-size: 60px;
+  font-weight: 600;
+}
+.overley #message {
+  font-family: "Permanent Marker", cursive;
+  color: gold;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.show__results .game--container {
+  filter: blur(5px);
+}
+.show__results .overley {
+  display: block;
+}
+.show__results .game--restart {
+  display: block;
 }/*# sourceMappingURL=style.css.map */
