@@ -10,12 +10,13 @@ let Value = new Map([
   [("minValue", -1000)],
 ]);
 let gameISOver = false;
+//check's the moves left in board
 function isMovesLeft(board) {
   for (let i = 0; i < 3; i++)
     for (let j = 0; j < 3; j++) if (board[i][j] == "_") return true;
   return false;
 }
-
+//simply evalvates the three values
 let isEqual3 = (a, b, c) => a === b && b === c && c !== "_";
 //Resulte styles
 let addResulteSyles = (
@@ -54,10 +55,10 @@ let addResulteSyles = (
     }
   }
 };
-//checking winner
+//checking winner(X/O)
 function checkWinner(board) {
   let score = 0;
-  // check horizontal
+  // checking horizontal
   for (let i = 0; i < board.length; i++) {
     if (isEqual3(board[i][0], board[i][1], board[i][2])) {
       addResulteSyles(i, 0, true, false, false);
@@ -69,7 +70,7 @@ function checkWinner(board) {
       return score;
     }
   }
-  //check veritically
+  //checking veritically
   for (let i = 0; i < board.length; i++) {
     if (isEqual3(board[0][i], board[1][i], board[2][i])) {
       addResulteSyles(0, i, false, false, false);
@@ -81,7 +82,7 @@ function checkWinner(board) {
       return score;
     }
   }
-  //check diagonal left
+  //checking diagonal left
   if (isEqual3(board[0][0], board[1][1], board[2][2])) {
     console.log("yes");
     addResulteSyles(0, 0, false, true, false);
@@ -92,7 +93,7 @@ function checkWinner(board) {
     gameISOver = true;
     return score;
   }
-  //check diagonal reight
+  //checking diagonal right
   if (isEqual3(board[0][2], board[1][1], board[2][0])) {
     addResulteSyles(0, 0, false, false, true);
     score =
@@ -102,17 +103,7 @@ function checkWinner(board) {
     gameISOver = true;
     return score;
   }
-  // for (let i = 0; i < board.length; i++) {
-  //   for (let j = 0; j < board.length; j++) {
-  //     if (board[i][j] == "_") return;
-  //     gameISOver = true;
-  //   }
-  // }
-  // for (let i = 0; i < 3; i++)
-  //   for (let j = 0; j < 3; j++) {
-  //     if (board[i][j] == "_") return;
-  //     gameISOver = true;
-  //   }
+  //checking game is over or not
   gameISOver = !isMovesLeft(board);
   return score;
 }
